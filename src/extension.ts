@@ -42,9 +42,9 @@ function registerCompleteionExtension(context: vscode.ExtensionContext) {
 		const configuration = vscode.workspace.getConfiguration();
 		const target = vscode.ConfigurationTarget.Global;
 		configuration.update("CodeShell.AutoTriggerCompletion", enabled, target, false).then(console.error);
-		var msg = enabled ? "启用 自动触发代码补全（输入停止时触发）" : "禁用 自动触发代码补全（可由快捷键触发）";
-		vscode.window.showInformationMessage(msg);
-		statusBar.show();
+		//var msg = enabled ? "启用 自动触发代码补全（输入停止时触发）" : "禁用 自动触发代码补全（可由快捷键触发）";
+		//vscode.window.showInformationMessage(msg);
+		//statusBar.show();
 	};
 
 	context.subscriptions.push(

@@ -178,7 +178,7 @@ export class CodeShellWebviewViewProvider implements vscode.WebviewViewProvider 
 			console.log("generateAnswer.requstsDone:", chatItem.aiMessage.content);
 			this.sessionStore.update(this.sessionItem);
 			this._view?.webview.postMessage({ type: "responseStreamDone", value: respData });
-			vscode.window.showInformationMessage("回答输出完毕!");
+			//vscode.window.showInformationMessage("回答输出完毕!");
 		}, (_err) => {
 			this.sessionStore.update(this.sessionItem);
 			this._view?.webview.postMessage({ type: "responseStreamDone", value: respData });

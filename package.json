@@ -1,6 +1,6 @@
 {
-  "name": "codeshell-vscode",
-  "displayName": "CodeShell VSCode Extension",
+  "name": "codemistral-vscode",
+  "displayName": "CodeMistral VSCode Extension",
   "description": "Coding with CodeShell LLM",
   "publisher": "WisdomShell",
   "version": "0.0.2",
@@ -135,7 +135,7 @@
       "editor/context": [
         {
           "submenu": "codeshell_context_submenu",
-          "group": "navigation"
+          "group": "editor"
         }
       ],
       "codeshell_context_submenu": [

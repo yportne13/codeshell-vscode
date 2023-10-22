@@ -19,9 +19,9 @@ export async function postEventStream(prompt: string, msgCallback: (data: string
     if ("CPU with llama.cpp" == modelEnv) {
         uri = "/completion"
         body = {
-            "prompt": "|<end>|" + prompt,
-            "n_predict": maxtokens, "temperature": 0.8, "repetition_penalty": 1.2,
-            "top_k":40,  "top_p":0.95, "stream": true, "stop": ["|<end>|"],
+            "prompt": prompt,
+            "n_predict": maxtokens, "temperature": 0.2, "repetition_penalty": 1.2,
+            "top_k":40,  "top_p":0.95, "stream": true, "stop": ["</s>"],
         };
     }
     if ("GPU with TGI toolkit" == modelEnv) {

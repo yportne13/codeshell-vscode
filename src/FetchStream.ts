@@ -18,7 +18,7 @@ export class FetchStream {
   onerror: FetchStreamOptions["onerror"];
 
   constructor(options: FetchStreamOptions) {
-    this.url = options.url;
+    this.url = "http://"+options.url;
     this.requestInit = options.requestInit;
     this.onmessage = options.onmessage;
     this.ondone = options.ondone;

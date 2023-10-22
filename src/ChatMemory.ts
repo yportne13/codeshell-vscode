@@ -15,7 +15,7 @@ export class ChatMessage {
 }
 
 export class HumanMessage extends ChatMessage {
-    prefix = "## human:";
+    prefix = "<s>[INST] ";
 }
 
 export class AIMessage extends ChatMessage {
@@ -39,13 +39,15 @@ export class ChatItem {
     }
 
     toString(): string {
-        return `${this.humanMessage.toString()}|<end>|${this.aiMessage.toString()}`;
+        return `${this.humanMessage.toString()} [/INST]`;
     }
 }
 
 export class SessionItem {
-    id = nanoid();
+    //id = "Uakgb_J5m9g-0JDMbcJqL";//nanoid();
+    //id = nanoid();
     time = new Date();
+    id = "Uakgb_J5m9g-0JDMbcJqL" + this.time.toDateString();
     title = "";
     chatList = new Array<ChatItem>();
 
@@ -75,7 +77,7 @@ export class SessionItem {
             }
             history += chatItem.toString();
             if (i < end) {
-                history += "|<end>|";
+                history += "";
             }
         }
         return history;
