@@ -20,18 +20,19 @@ export async function postEventStream(prompt: string, msgCallback: (data: string
         uri = "/completion"
         body = {
             "prompt": prompt,
-            "n_predict": maxtokens, "temperature": 0.2, "repetition_penalty": 1.2,
+            "n_predict": maxtokens, "temperature": 0.8, "repetition_penalty": 1.2,
             "top_k":40,  "top_p":0.95, "stream": true, "stop": ["</s>"],
         };
     }
     if ("GPU with TGI toolkit" == modelEnv) {
         uri = "/generate_stream"
+        // uri = "/codeshell-code/assistants"
         body = {
-            'inputs': prompt,
-            'parameters': {
-                'max_new_tokens': maxtokens,
-                'temperature': 0.6, 'top_p': 0.95, 'do_sample': true, 'repetition_penalty': 1.2, 
-                'stop': ["|<end>|", "|end|", "<|endoftext|>", "## human"]
+            "inputs": prompt,
+            "parameters": {
+                "max_new_tokens": maxtokens,
+                "temperature": 0.6, "repetition_penalty": 1.2, "top_p": 0.95, "do_sample": true, 
+                "stop": ["|<end>|", "|end|", "<|endoftext|>", "## human"]
             }
         };
     }

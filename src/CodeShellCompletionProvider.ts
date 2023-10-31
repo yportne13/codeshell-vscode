@@ -1,5 +1,6 @@
 import { CancellationToken, InlineCompletionContext, InlineCompletionItem, InlineCompletionItemProvider, InlineCompletionList, Position, ProviderResult, Range, TextDocument, window, workspace, StatusBarItem, InlineCompletionTriggerKind } from "vscode";
 import { postCompletion } from "./RequestCompletion";
+import { sleep } from "./Utils";
 
 export class CodeShellCompletionProvider implements InlineCompletionItemProvider {
 
@@ -18,7 +19,7 @@ export class CodeShellCompletionProvider implements InlineCompletionItemProvider
                 return Promise.resolve(([] as InlineCompletionItem[]));
             }
             let delay = workspace.getConfiguration("CodeShell").get("AutoCompletionDelay") as number;
-            await this.sleep(1000 * delay);
+            await sleep(1000 * delay);
             if (token.isCancellationRequested) {
                 return Promise.resolve(([] as InlineCompletionItem[]));
             }
@@ -35,7 +36,7 @@ export class CodeShellCompletionProvider implements InlineCompletionItemProvider
         return postCompletion(fimPrefixCode, fimSuffixCode).then((response) => {
             this.statusBar.text = "$(light-bulb)";
             this.statusBar.tooltip = `CodeShell - Ready`;
-            if (token.isCancellationRequested || !response) {
+            if (token.isCancellationRequested || !response || this.isNil(response.trim())) {
                 return Promise.resolve(([] as InlineCompletionItem[]));
             }
             return [new InlineCompletionItem(response, new Range(position, position))];
@@ -65,9 +66,5 @@ export class CodeShellCompletionProvider implements InlineCompletionItemProvider
     private isNil(value: String | undefined | null): boolean {
         return value === undefined || value === null || value.length === 0;
     }
-
-    private sleep(milliseconds: number) {
-        return new Promise(r => setTimeout(r, milliseconds));
-    };
-
+    
 }

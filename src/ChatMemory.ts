@@ -75,10 +75,8 @@ export class ChatItem {
 }
 
 export class SessionItem {
-    //id = "Uakgb_J5m9g-0JDMbcJqL";//nanoid();
-    //id = nanoid();
     time = new Date();
-    id = "Uakgb_J5m9g-0JDMbcJqL" + this.time.toISOString();
+    id = this.time.toISOString();
     title = "";
     chatList = new Array<ChatItem>();
 
