@@ -6,6 +6,10 @@ export function createPromptCodeImprove(language: string, functionCode: string):
 	return `请优化并重写以下${language}代码：\n\`\`\`${language}\n${functionCode}\n\`\`\`\n`;
 }
 
+export function createPromptCodeComplete(language: string, functionCode: string): string {
+	return `请完善以下${language}代码：\n\`\`\`${language}\n${functionCode}\n\`\`\`\n`;
+}
+
 export function createPromptCodeClean(language: string, functionCode: string): string {
 	return `请清理并重写以下${language}代码：\n\`\`\`${language}\n${functionCode}\n\`\`\`\n`;
 }

@@ -1,8 +1,38 @@
 import { nanoid } from "nanoid";
-import { ExtensionContext } from "vscode";
+import { ExtensionContext, workspace } from "vscode";
+
+const prompt = workspace.getConfiguration("CodeShell").get("PromptTemplate") as string;
+let system_prompt: string;
+let prefix_prompt: string;
+let suffix_prompt: string;
+if ("Mistral" == prompt) {
+    system_prompt = "<s>";
+    prefix_prompt = "[INST] ";
+    suffix_prompt = " [/INST]\n";
+} else if(prompt == "Zephyr") {
+    system_prompt = "<|system|>\nYou are a friendly chatbot who always responds in the style of a pirate.你需要用中文来回答问题</s>";
+    prefix_prompt = "<|user|>\n";
+    suffix_prompt = "</s>\n<|assistant|>\n";
+} else {
+    system_prompt = "";
+    prefix_prompt = "[INST] <<SYS>>\n You are a helpful assistant.你需要用中文来回答问题 \n<</SYS>>\n\n  ";
+    suffix_prompt = " [/INST]";
+}
+
+// zephyr
+// <|system|>
+// You are a friendly chatbot who always responds in the style of a pirate.</s>
+// <|user|>
+// How many helicopters can a human eat in one sitting?</s>
+// <|assistant|>
+
+//mistral
+//<s>[INST] xxxx [/INST]
+//
 
 export class ChatMessage {
     prefix?: string;
+    suffix?: string;
     content: string;
 
     constructor(content: string) {
@@ -10,12 +40,13 @@ export class ChatMessage {
     }
 
     toString(): string {
-        return `${this.prefix}${this.content}`;
+        return `${this.prefix}${this.content}${this.suffix}`;
     }
 }
 
 export class HumanMessage extends ChatMessage {
-    prefix = "<s>[INST] ";
+    prefix = prefix_prompt;//"<s>[INST] ";
+    suffix = suffix_prompt;//" [/INST]\n";
 }
 
 export class AIMessage extends ChatMessage {
@@ -39,7 +70,7 @@ export class ChatItem {
     }
 
     toString(): string {
-        return `${this.humanMessage.toString()} [/INST]`;
+        return `${this.humanMessage.toString()}`;
     }
 }
 
@@ -47,7 +78,7 @@ export class SessionItem {
     //id = "Uakgb_J5m9g-0JDMbcJqL";//nanoid();
     //id = nanoid();
     time = new Date();
-    id = "Uakgb_J5m9g-0JDMbcJqL" + this.time.toDateString();
+    id = "Uakgb_J5m9g-0JDMbcJqL" + this.time.toISOString();
     title = "";
     chatList = new Array<ChatItem>();
 
@@ -69,7 +100,7 @@ export class SessionItem {
     }
 
     getSlicePrompt(start:number, end:number) {
-        let history = "";
+        let history = system_prompt;//"";
         for (let i = start; i <= end; i++) {
             const chatItem = this.chatList[i];
             if (history.length > 0) {

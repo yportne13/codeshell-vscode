@@ -101,6 +101,10 @@ export class CodeShellWebviewViewProvider implements vscode.WebviewViewProvider 
 				humanPrompt = prompt.createPromptCodeImprove(languageId, selectedText);
 				break;
 			}
+			case "codeshell.complete_this_code": {
+				humanPrompt = prompt.createPromptCodeComplete(languageId, selectedText);
+				break;
+			}
 			case "codeshell.clean_this_code": {
 				humanPrompt = prompt.createPromptCodeClean(languageId, selectedText);
 				break;

@@ -25,6 +25,7 @@ function registerWebviewViewExtension(context: vscode.ExtensionContext) {
 		}),
 		vscode.commands.registerCommand("codeshell.explain_this_code", () => provider.executeCommand("codeshell.explain_this_code")),
 		vscode.commands.registerCommand("codeshell.improve_this_code", () => provider.executeCommand("codeshell.improve_this_code")),
+		vscode.commands.registerCommand("codeshell.complete_this_code", () => provider.executeCommand("codeshell.complete_this_code")),
 		vscode.commands.registerCommand("codeshell.clean_this_code", () => provider.executeCommand("codeshell.clean_this_code")),
 		vscode.commands.registerCommand("codeshell.generate_comment", () => provider.executeCommand("codeshell.generate_comment")),
 		vscode.commands.registerCommand("codeshell.generate_unit_test", () => provider.executeCommand("codeshell.generate_unit_test")),
