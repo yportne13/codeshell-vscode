@@ -3,7 +3,7 @@
   "displayName": "CodeMistral VSCode Extension",
   "description": "Coding with CodeShell LLM",
   "publisher": "WisdomShell",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "icon": "assets/logo.png",
   "keywords": [
     "code-suggestion",
@@ -38,7 +38,7 @@
         "CodeShell.PromptTemplate": {
           "description": "Mistral or Zephyr",
           "default": "Mistral",
-          "enum": ["Mistral", "Zephyr", "Morph"],
+          "enum": ["Mistral", "Zephyr", "CodeAplaca", "Morph"],
           "type": "string",
           "order": 2
         },
@@ -127,7 +127,7 @@
       },
       {
         "command": "codeshell.complete_this_code",
-        "title": "完善 这段代码",
+        "title": "%codeshell.complete_this_code.title%",
         "category": "codeshell"
       },
       {

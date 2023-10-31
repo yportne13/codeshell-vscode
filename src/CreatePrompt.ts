@@ -9,7 +9,7 @@ export function createPromptCodeImprove(language: string, functionCode: string):
 }
 
 export function createPromptCodeComplete(language: string, functionCode: string): string {
-	return `请完善以下${language}代码：\n\`\`\`${language}\n${functionCode}\n\`\`\`\n`;
+	return `${translate("complete_rewrite")} ${language} ${translate("code")}\n\`\`\`${language}\n${functionCode}\n\`\`\`\n`;
 }
 
 export function createPromptCodeClean(language: string, functionCode: string): string {

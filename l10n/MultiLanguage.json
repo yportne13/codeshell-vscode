@@ -83,6 +83,10 @@
         "zh-cn": "请优化并重写以下",
         "en": "Please optimize and rewrite the following"
     },
+    "complete_rewrite": {
+        "zh-cn": "请完善以下",
+        "en": "Please complete the following"
+    },
     "timeout": {
         "zh-cn": "请求超时，请稍后重试。",
         "en": "Request timeout, please try again later"

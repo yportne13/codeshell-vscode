@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { ExtensionContext, workspace } from "vscode";
 
 const prompt = workspace.getConfiguration("CodeShell").get("PromptTemplate") as string;
@@ -13,9 +12,13 @@ if ("Mistral" == prompt) {
     system_prompt = "<|system|>\nYou are a friendly chatbot who always responds in the style of a pirate.你需要用中文来回答问题</s>";
     prefix_prompt = "<|user|>\n";
     suffix_prompt = "</s>\n<|assistant|>\n";
+} else if(prompt == "CodeAlpaca") {
+    system_prompt = "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n";
+    prefix_prompt = "\n### Instruction:\n";
+    suffix_prompt = "\n\n### Response:\n";
 } else {
     system_prompt = "";
-    prefix_prompt = "[INST] <<SYS>>\n You are a helpful assistant.你需要用中文来回答问题 \n<</SYS>>\n\n  ";
+    prefix_prompt = "[INST] <<SYS>>\n You are a helpful assistant. \n<</SYS>>\n\n  ";
     suffix_prompt = " [/INST]";
 }
 
